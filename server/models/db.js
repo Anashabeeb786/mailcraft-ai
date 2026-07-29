@@ -6,7 +6,7 @@
  *  - initDB()    : Creates tables if they don't exist (called on server start)
  *  - getDB()     : Returns the singleton DB instance for use in controllers
  */
-
+const fs = require("fs");
 const Database = require("better-sqlite3");
 const path = require("path");
 
@@ -22,7 +22,12 @@ let db;
  * Uses IF NOT EXISTS so it's safe to call multiple times.
  */
 function initDB() {
-  db = new Database(DB_PATH);
+  const dataDir = path.dirname(DB_PATH);
+
+if (!fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir, { recursive: true });
+}
+ db = new Database(DB_PATH);
 
   // Enable WAL mode for better read concurrency
   db.pragma("journal_mode = WAL");
