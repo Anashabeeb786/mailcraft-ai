@@ -21,8 +21,10 @@ const emailRoutes = require("./routes/email");
 const historyRoutes = require("./routes/history");
 
 const app = express();
-const PORT = process.env.PORT || 3001;
 
+app.set("trust proxy", 1);
+
+const PORT = process.env.PORT || 3001;
 // ─────────────────────────────────────────────
 //  Security Middleware
 // ─────────────────────────────────────────────
@@ -31,9 +33,20 @@ const PORT = process.env.PORT || 3001;
 app.use(helmet());
 
 // Allow requests from the Vite dev server (and production origin)
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://mailcraft-j6q40bs9a-anas25-340a.vercel.app",
+];
+
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN || "http://localhost:5173",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
