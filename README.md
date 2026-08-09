@@ -4,6 +4,8 @@
 
 MailCraft AI uses NVIDIA's LLaMA 3.1 model (via the NIM API) to generate perfectly-crafted, context-aware professional emails in seconds. Users log in, fill in their email purpose/recipient/tone, and receive a complete, ready-to-send email.
 
+website is live🌐https://mailcraft-ai-omega.vercel.app/
+
 ---
 
 ## 🚀 Features
