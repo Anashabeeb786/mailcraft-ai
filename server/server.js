@@ -35,9 +35,8 @@ app.use(helmet());
 // Allow requests from the Vite dev server (and production origin)
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://mailcraft-j6q40bs9a-anas25-340a.vercel.app",
+  "https://mailcraft-ai-omega.vercel.app",
 ];
-
 app.use(
   cors({
     origin: function (origin, callback) {

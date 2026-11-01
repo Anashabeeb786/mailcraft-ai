@@ -1,6 +1,6 @@
 /**
  * models/db.js — SQLite Database Layer
- *
+ *npm
  * Uses `better-sqlite3` for synchronous, file-based SQLite access.
  * Exports:
  *  - initDB()    : Creates tables if they don't exist (called on server start)
